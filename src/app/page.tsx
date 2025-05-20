@@ -1,9 +1,11 @@
-import Image from "next/image";
+import { StockPage } from "@/components/shared";
 
 export default function Home() {
   return (
     <div>
-      <main></main>
+      <main>
+        <StockPage />
+      </main>
       <footer></footer>
     </div>
   );
