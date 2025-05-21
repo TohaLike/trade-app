@@ -6,12 +6,11 @@ export default class StocksService {
 
   static async getStockData(symbols: string[]): Promise<any> {
     try {
+      // const response = await axios.get("");
       const response = await axios.get(`${this.url}/quote?symbol=${symbols}&interval=1min&outputsize=30&apikey=${this.apiKey}`);
       return response.data;
     } catch (error) {
       throw error;
     }
   }
-
-
 }

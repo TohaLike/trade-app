@@ -27,8 +27,8 @@ export const StockItem: React.FC<StockItemProps> = ({
         align="right"
         sx={{ color: percent_change >= 0 ? "green" : "red" }}
       >
-        {percent_change > 0 ? "▲" : "▼"} {percent_change > 0 && "+"}
-        {percent_change}%
+        {percent_change > 0 ? "▲" : "▼"}
+        {percent_change > 0 ? `+${percent_change}` : percent_change}%
       </TableCell>
     </TableRow>
   );

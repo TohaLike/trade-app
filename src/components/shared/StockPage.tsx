@@ -1,27 +1,31 @@
 "use client";
 import React, { useState } from "react";
 import { useGetStocks } from "@/hooks/useGetStoks";
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import { StockItem, StocksFilter } from "../ui";
-import { StockItemProps } from "@/types";
+import { Box, Typography } from "@mui/material";
+import { StocksFilter } from "../ui";
+import { StocksTable } from "../ui/StocksTable";
 
-const SYMBOL_DATA = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "ARM", "NVDA"];
+const SYMBOL_DATA = [
+  "AAPL",
+  "MSFT",
+  "GOOG",
+  "AMZN",
+  "TSLA",
+  "ARM",
+  "NVDA",
+  "COMP",
+  "NDX",
+];
 
 export const StockPage: React.FC = () => {
   const [filter, setFilter] = useState("all");
   const [symbols, setSymbols] = useState<string[]>(SYMBOL_DATA);
+  const [search, setSearch] = useState("");
   const { data, isLoading, error } = useGetStocks(symbols);
 
-  const stocksArr = data && symbols?.map((stock: string) => ({
+  const stocksArr =
+    data &&
+    symbols?.map((stock: string) => ({
       symbol: data[stock]?.symbol,
       name: data[stock]?.name,
       close: Number(data[stock]?.close).toFixed(2),
@@ -30,6 +34,9 @@ export const StockPage: React.FC = () => {
     }));
 
   const filteredStocks = stocksArr?.filter((stock: any) => {
+    if (search)
+      return stock.symbol.toLowerCase().includes(search.toLowerCase());
+
     if (filter === "all") return true;
 
     const open = Number(stock.open);
@@ -41,25 +48,6 @@ export const StockPage: React.FC = () => {
     return true;
   });
 
-  const stocksItems = () => {
-    // if (data?.status === "error")
-    //   return (
-    //     <TableRow
-    //       sx={{ "& .MuiTableCell-root": { p: "10px", border: "none" } }}
-    //     >
-    //       <TableCell>{data?.message}</TableCell>
-    //     </TableRow>
-    //   );
-
-    return (
-      <>
-        {filteredStocks?.map((stock: StockItemProps, index: number) => (
-          <StockItem key={stock.symbol} {...stock} rowIndex={index} />
-        ))}
-      </>
-    );
-  };
-
   console.log(filteredStocks);
 
   return (
@@ -69,28 +57,24 @@ export const StockPage: React.FC = () => {
       >
         <StocksFilter
           filter={filter}
-          symbol={symbols}
+          symbol={search}
           setFilter={setFilter}
-          setSymbols={setSymbols}
+          setSymbols={setSearch}
         />
-        
 
-        <TableContainer
-          component={Paper}
-          variant="outlined"
-          sx={{ maxWidth: 800, height: 500 }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow sx={{ "& .MuiTableCell-root": { p: "10px" } }}>
-                <TableCell>Символ</TableCell>
-                <TableCell align="right">Цена</TableCell>
-                <TableCell align="right">% Изменение</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{stocksItems()}</TableBody>
-          </Table>
-        </TableContainer>
+        {data?.status === "error" || !data ? (
+          <Box
+            sx={{
+              border: "1px solid rgba(0, 0, 0, 0.12)",
+              borderRadius: "4px",
+              p: 2,
+            }}
+          >
+            <Typography>{data?.message}</Typography>
+          </Box>
+        ) : (
+          <StocksTable data={filteredStocks} />
+        )}
       </Box>
     </div>
   );
