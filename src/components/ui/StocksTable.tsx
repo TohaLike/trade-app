@@ -14,11 +14,7 @@ import { StockItem } from "./StockItem";
 
 export const StocksTable: React.FC<StocksTableProps> = ({ data }) => {
   return (
-    <TableContainer
-      component={Paper}
-      variant="outlined"
-      sx={{ maxWidth: 800, height: 400 }}
-    >
+    <TableContainer component={Paper} variant="outlined" sx={{ height: 400 }}>
       <Table>
         <TableHead>
           <TableRow sx={{ "& .MuiTableCell-root": { p: "10px" } }}>

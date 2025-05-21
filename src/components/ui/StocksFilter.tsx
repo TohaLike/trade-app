@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StocksFilterProps } from "@/types";
 import {
   Box,
@@ -9,12 +9,13 @@ import {
   ToggleButtonGroup,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useDebounce } from "use-debounce";
 
 export const StocksFilter: React.FC<StocksFilterProps> = ({
   filter,
-  symbol,
+  search,
   setFilter,
-  setSymbols,
+  setSearch,
 }) => {
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -26,7 +27,7 @@ export const StocksFilter: React.FC<StocksFilterProps> = ({
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={1.5}>
+    <Box display={"flex"} justifyContent={"space-between"} gap={1.5}>
       <ToggleButtonGroup
         value={filter}
         exclusive
@@ -56,10 +57,10 @@ export const StocksFilter: React.FC<StocksFilterProps> = ({
             ),
           },
         }}
-        // value={symbol}
-        // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-        //   setSymbols(e.target.value)
-        // }
+        value={search}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearch(e.target.value)
+        }
       />
     </Box>
   );

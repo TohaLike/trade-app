@@ -6,7 +6,6 @@ export default function Home() {
       <main>
         <StockPage />
       </main>
-      <footer></footer>
     </div>
   );
 }

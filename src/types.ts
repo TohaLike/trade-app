@@ -14,9 +14,9 @@ export interface StockItemProps {
 
 export interface StocksFilterProps {
   filter: string;
-  symbol: string;
+  search: string;
   setFilter: (type: string) => void;
-  setSymbols: (symbol: string) => void;
+  setSearch: (symbol: string) => void;
 }
 
 export interface StocksTableProps {
