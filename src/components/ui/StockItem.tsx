@@ -13,7 +13,7 @@ export const StockItem: React.FC<StockItemProps> = ({
   return (
     <TableRow
       sx={{
-        backgroundColor: rowIndex % 2 === 0 ? "#f5f5fa" : "#fff",
+        // backgroundColor: rowIndex % 2 === 0 ? "#f5f5fa" : "#fff",
         ":last-child td, :last-child th": { border: 0 },
         "& .MuiTableCell-root": { p: " 12px 10px" },
       }}
