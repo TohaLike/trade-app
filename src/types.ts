@@ -1,6 +1,7 @@
 export interface Stock {
   symbol: string;
   close: number;
+  open: string;
   percent_change: number;
 }
 

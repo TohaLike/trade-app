@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StocksFilterProps } from "@/types";
 import {
   Box,
@@ -9,7 +9,6 @@ import {
   ToggleButtonGroup,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useDebounce } from "use-debounce";
 
 export const StocksFilter: React.FC<StocksFilterProps> = ({
   filter,
