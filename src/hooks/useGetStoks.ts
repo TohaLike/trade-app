@@ -6,7 +6,7 @@ export const useGetStocks = (symbols: string[]) => {
     ["stocks_data"],
     () => StocksService.getStockData(symbols),
     {
-      // refreshInterval: 60000,
+      refreshInterval: 60000,
       revalidateOnFocus: false,
       // revalidateOnMount: false,
     }
