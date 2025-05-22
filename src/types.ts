@@ -11,8 +11,9 @@ export interface StockItemProps {
   open: number;
   close: number;
   percent_change: number;
-  rowIndex?: number;
+  rowIndex: number;
 }
+
 export interface StockApiResponseItem {
   symbol: string;
   name: string;
@@ -38,5 +39,5 @@ export interface StockApiErrorResponse {
 export type StockApiResult = StockApiResponse | StockApiErrorResponse;
 
 export interface StocksTableProps {
-  data: StockItemProps[];
+  data: StockApiResponseItem[];
 }

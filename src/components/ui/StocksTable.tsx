@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { StockItemProps, StocksTableProps } from "@/types";
+import { StockApiResponseItem, StocksTableProps } from "@/types";
 import {
   Paper,
   Table,
@@ -24,7 +24,7 @@ export const StocksTable: React.FC<StocksTableProps> = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((stock: StockItemProps, index: number) => (
+          {data?.map((stock: StockApiResponseItem, index: number) => (
             <StockItem key={stock.symbol} {...stock} rowIndex={index} />
           ))}
         </TableBody>

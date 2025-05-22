@@ -4,7 +4,7 @@ import { useGetStocks } from "@/hooks/useGetStoks";
 import { Box, Skeleton, Typography } from "@mui/material";
 import { StocksFilter, StocksTable } from "../ui";
 import { useDebounce } from "use-debounce";
-import { StockApiResponse, StockApiResult, StockItemProps } from "@/types";
+import { StockApiResponse, StockApiResponseItem, StockApiResult, StockItemProps } from "@/types";
 
 const SYMBOLS = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA"];
 
@@ -22,7 +22,7 @@ export const StockPage: React.FC = () => {
     isLoading: boolean;
   };
 
-  let stocksArr: Array<StockItemProps> | undefined = undefined;
+  let stocksArr: Array<StockApiResponseItem> | undefined = undefined;
 
   if (data && isStockApiResponse(data)) {
     stocksArr =
