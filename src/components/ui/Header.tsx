@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
 export const Header: React.FC = ({}) => {
   function appBarLabel(label: string) {
@@ -14,8 +14,14 @@ export const Header: React.FC = ({}) => {
   }
 
   return (
-    <AppBar position="static" color="primary">
-      {appBarLabel("Stocks App")}
-    </AppBar>
+    <div>
+      <AppBar
+        position="static"
+        color="primary"
+        sx={{ backgroundColor: "var(--dark-gray)" }}
+      >
+        {appBarLabel("STOCKS")}
+      </AppBar>
+    </div>
   );
 };

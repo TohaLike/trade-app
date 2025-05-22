@@ -7,11 +7,21 @@ export interface Stock {
 
 export interface StockItemProps {
   symbol: string;
-  close: number;
   name: string;
+  open: number;
+  close: number;
   percent_change: number;
-  rowIndex: number;
+  rowIndex?: number;
 }
+export interface StockApiResponseItem {
+  symbol: string;
+  name: string;
+  open: number;
+  close: number;
+  percent_change: number;
+}
+
+export type StockApiResponse = Record<string, StockApiResponseItem>;
 
 export interface StocksFilterProps {
   filter: string;
@@ -20,6 +30,13 @@ export interface StocksFilterProps {
   setSearch: (symbol: string) => void;
 }
 
+export interface StockApiErrorResponse {
+  status: "error";
+  message: any;
+}
+
+export type StockApiResult = StockApiResponse | StockApiErrorResponse;
+
 export interface StocksTableProps {
-  data: any[],
+  data: StockItemProps[];
 }

@@ -26,12 +26,33 @@ export const StocksFilter: React.FC<StocksFilterProps> = ({
   };
 
   return (
-    <Box display={"flex"} justifyContent={"space-between"} gap={1.5}>
+    <Box
+      display={"flex"}
+      justifyContent={"space-between"}
+      gap={1.5}
+      sx={{
+        "@media (max-width: 690px)": {
+          flexDirection: "column",
+        },
+      }}
+    >
       <ToggleButtonGroup
         value={filter}
         exclusive
         onChange={handleChange}
         aria-label="filter"
+        sx={{
+          "@media (max-width: 436px)": {
+            "& .MuiToggleButtonGroup-grouped": {
+              fontSize: "12px",
+            },
+          },
+          "@media (max-width: 389px)": {
+            "& .MuiToggleButtonGroup-grouped": {
+              fontSize: "10px",
+            },
+          },
+        }}
       >
         <ToggleButton value="all" aria-label="all">
           Все
